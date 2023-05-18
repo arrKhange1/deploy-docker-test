@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'docker-deploy-test';
+
+  protected response = '';
+
+  public ngOnInit(): void {
+     (async () => {
+        const response = await fetch("http://localhost:8080/hello");
+        const strValue = await response.text();
+        this.response = strValue;
+     }) ()
+  }
 }
