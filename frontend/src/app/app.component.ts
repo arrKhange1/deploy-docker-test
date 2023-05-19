@@ -12,7 +12,7 @@ export class AppComponent {
 
   public ngOnInit(): void {
      (async () => {
-        const response = await fetch("http://localhost:8080/hello");
+        const response = await fetch("http://backend-deploy:8080/hello");
         const strValue = await response.text();
         this.response = strValue;
      }) ()
