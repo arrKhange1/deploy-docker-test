@@ -12,7 +12,7 @@ export class AppComponent {
 
   public ngOnInit(): void {
      (async () => {
-        const response = await fetch("https://jsonplaceholder.typicode.com/todos/2");
+        const response = await fetch("https://backend.1531423-carruners.twc1.net/hello");
         const strValue = await response.text();
         this.response = strValue;
      }) ()
