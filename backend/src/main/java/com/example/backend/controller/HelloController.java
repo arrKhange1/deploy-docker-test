@@ -32,7 +32,7 @@ public class HelloController {
 	
 	@GetMapping("/compose-test")
 	public String composeTest() {
-		return "docker compose is working!";
+		return "ci/cd is working with docker compose!";
 	}
 
 }
