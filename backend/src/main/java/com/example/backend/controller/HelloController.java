@@ -29,5 +29,10 @@ public class HelloController {
 		userRepo.save(user);
 		return ResponseEntity.ok(userRepo.findAll());
 	}
+	
+	@GetMapping("/compose-test")
+	public String composeTest() {
+		return "docker compose is working!";
+	}
 
 }
