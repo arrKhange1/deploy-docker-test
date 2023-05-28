@@ -14,6 +14,8 @@ import com.example.backend.repo.UserRepo;
 @RestController
 public class HelloController {
 	
+	private static Long counter = 0L;
+	
 	@Autowired
 	private UserRepo userRepo;
 	
@@ -33,6 +35,18 @@ public class HelloController {
 	@GetMapping("/compose-test")
 	public String composeTest() {
 		return "ci/cd is working with docker compose!";
+	}
+	
+	@GetMapping("/delay")
+	public String delay() throws InterruptedException {
+		Thread.sleep(100);
+		counter++;
+		return "delay";
+	}
+	
+	@GetMapping("/counter")
+	public Long counter() {
+		return counter;
 	}
 
 }
