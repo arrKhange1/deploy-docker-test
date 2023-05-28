@@ -4,16 +4,21 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.entity.User;
 import com.example.backend.repo.UserRepo;
+import com.example.backend.service.AsyncTaskService;
 
 
 @RestController
 public class HelloController {
+	
+	@Autowired
+    private AsyncTaskService asyncTaskService;
 	
 	private static Long counter = 0L;
 	
@@ -39,10 +44,9 @@ public class HelloController {
 	}
 	
 	@GetMapping("/delay")
-	public Long delay() throws InterruptedException {
-		Thread.sleep(100);
-		counter++;
-		return 0L;
+	public CompletableFuture<Object> delay() throws InterruptedException {
+		return asyncTaskService.handleExampleRequestAsync()
+                .thenApply(result -> new ResponseEntity<>(result, HttpStatus.OK));
 	}
 	
 	@GetMapping("/reset-counter")
