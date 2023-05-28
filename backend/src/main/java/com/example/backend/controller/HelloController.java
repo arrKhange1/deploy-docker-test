@@ -39,7 +39,7 @@ public class HelloController {
 	
 	@GetMapping("/delay")
 	public Long delay() throws InterruptedException {
-		Thread.sleep(50);
+		Thread.sleep(100);
 		counter++;
 		return 0L;
 	}
