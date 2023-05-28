@@ -39,10 +39,10 @@ public class HelloController {
 	}
 	
 	@GetMapping("/delay")
-	public CompletableFuture<Long> delay() throws InterruptedException {
+	public Long delay() throws InterruptedException {
 		Thread.sleep(100);
 		counter++;
-		return CompletableFuture.completedFuture(0L);
+		return 0L;
 	}
 	
 	@GetMapping("/reset-counter")
