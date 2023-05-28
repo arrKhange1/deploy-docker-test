@@ -38,9 +38,14 @@ public class HelloController {
 	}
 	
 	@GetMapping("/delay")
-	public String delay() {
+	public ResponseEntity<String> delay() {
 		counter++;
-		return "delay";
+		return ResponseEntity.ok("delay");
+	}
+	
+	@GetMapping("/reset-counter")
+	public ResponseEntity<?> reset() {
+		return ResponseEntity.ok("ok");
 	}
 	
 	@GetMapping("/counter")
