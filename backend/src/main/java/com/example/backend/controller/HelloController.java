@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,10 +39,10 @@ public class HelloController {
 	}
 	
 	@GetMapping("/delay")
-	public Long delay() throws InterruptedException {
+	public CompletableFuture<Long> delay() throws InterruptedException {
 		Thread.sleep(100);
 		counter++;
-		return 0L;
+		return CompletableFuture.completedFuture(0L);
 	}
 	
 	@GetMapping("/reset-counter")
