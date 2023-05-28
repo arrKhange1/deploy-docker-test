@@ -38,8 +38,7 @@ public class HelloController {
 	}
 	
 	@GetMapping("/delay")
-	public String delay() throws InterruptedException {
-		Thread.sleep(100);
+	public String delay() {
 		counter++;
 		return "delay";
 	}
