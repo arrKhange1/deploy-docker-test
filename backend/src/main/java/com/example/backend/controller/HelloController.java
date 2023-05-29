@@ -45,7 +45,7 @@ public class HelloController {
 	
 	@GetMapping("/delay")
 	public CompletableFuture<Long> delay() throws InterruptedException {
-		return asyncTaskService.handleExampleRequestAsync();
+		return asyncTaskService.doWork();
 	}
 	
 	@GetMapping("/reset-counter")

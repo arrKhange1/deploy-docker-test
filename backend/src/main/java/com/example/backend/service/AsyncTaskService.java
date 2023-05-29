@@ -10,11 +10,15 @@ import com.example.backend.controller.HelloController;
 @Service
 public class AsyncTaskService {
 
-    @Async
-    public CompletableFuture<Long> handleExampleRequestAsync() throws InterruptedException {
+    
+    private CompletableFuture<Long> handleExampleRequestAsync() throws InterruptedException {
         // Perform some logic here
         Thread.sleep(1000);
         HelloController.counter++;
         return CompletableFuture.completedFuture(0L);
+    }
+    
+    public CompletableFuture<Long> doWork() throws InterruptedException {
+    	return handleExampleRequestAsync();
     }
 }
