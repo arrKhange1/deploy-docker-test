@@ -3,22 +3,18 @@ package com.example.backend.service;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.controller.HelloController;
 
 @Service
 public class AsyncTaskService {
-
     
-    private CompletableFuture<Long> handleExampleRequestAsync() throws InterruptedException {
-        // Perform some logic here
-        Thread.sleep(1000);
-        HelloController.counter++;
-        return CompletableFuture.completedFuture(0L);
+    @Async
+    public void doWork() throws InterruptedException {
+    //	Thread.sleep(100);
+    	HelloController.counter.incrementAndGet();
     }
     
-    public CompletableFuture<Long> doWork() throws InterruptedException {
-    	return handleExampleRequestAsync();
-    }
 }

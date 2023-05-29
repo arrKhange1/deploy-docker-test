@@ -2,10 +2,12 @@ package com.example.backend.controller;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,12 +17,13 @@ import com.example.backend.service.AsyncTaskService;
 
 
 @RestController
+@EnableAsync
 public class HelloController {
 	
 	@Autowired
     private AsyncTaskService asyncTaskService;
 	
-	public static Long counter = 0L;
+	public static AtomicLong counter = new AtomicLong(0);
 	
 	@Autowired
 	private UserRepo userRepo;
@@ -44,18 +47,19 @@ public class HelloController {
 	}
 	
 	@GetMapping("/delay")
-	public CompletableFuture<Long> delay() throws InterruptedException {
-		return asyncTaskService.doWork();
+	public ResponseEntity<Integer> delay() throws InterruptedException {
+		asyncTaskService.doWork();
+		return ResponseEntity.ok(0);
 	}
 	
 	@GetMapping("/reset-counter")
 	public ResponseEntity<?> reset() {
-		counter = 0L;
+		counter = new AtomicLong(0);
 		return ResponseEntity.ok("ok");
 	}
 	
 	@GetMapping("/counter")
-	public Long counter() {
+	public AtomicLong counter() {
 		return counter;
 	}
 
