@@ -20,7 +20,7 @@ public class HelloController {
 	@Autowired
     private AsyncTaskService asyncTaskService;
 	
-	private static Long counter = 0L;
+	public static Long counter = 0L;
 	
 	@Autowired
 	private UserRepo userRepo;
@@ -44,9 +44,8 @@ public class HelloController {
 	}
 	
 	@GetMapping("/delay")
-	public CompletableFuture<Object> delay() throws InterruptedException {
-		return asyncTaskService.handleExampleRequestAsync()
-                .thenApply(result -> new ResponseEntity<>(result, HttpStatus.OK));
+	public CompletableFuture<Long> delay() throws InterruptedException {
+		return asyncTaskService.handleExampleRequestAsync();
 	}
 	
 	@GetMapping("/reset-counter")
