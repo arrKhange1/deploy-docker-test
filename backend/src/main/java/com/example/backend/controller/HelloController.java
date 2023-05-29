@@ -48,7 +48,10 @@ public class HelloController {
 	
 	@GetMapping("/delay")
 	public ResponseEntity<Integer> delay() throws InterruptedException {
-		asyncTaskService.doWork();
+		//asyncTaskService.doWork();
+		for (int i = 0; i < 1000000; i++) {
+			counter.incrementAndGet();
+		}
 		return ResponseEntity.ok(0);
 	}
 	
